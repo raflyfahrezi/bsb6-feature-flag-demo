@@ -16,6 +16,7 @@ function App() {
   })
   const [input, setInput] = useState('')
   const isInputDisabled = useGateValue('disabled-input')
+  const isDeleteDisabled = useGateValue('disabled-delete-id')
   const { logEvent } = useStatsigClient()
 
   useEffect(() => {
@@ -84,7 +85,8 @@ function App() {
                 <span className="text-gray-700 break-all">{note.text}</span>
                 <button
                   onClick={() => deleteNote(note.id)}
-                  className="ml-4 text-sm text-red-400 hover:text-red-600 transition-colors cursor-pointer"
+                  disabled={isDeleteDisabled}
+                  className="ml-4 text-sm text-red-400 hover:text-red-600 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:text-red-400"
                 >
                   Delete
                 </button>
